@@ -1,0 +1,120 @@
+<div class="container">
+<h3>Registration Form</h3>
+<div class="container">
+<form [formGroup]="myregistr" (ngSubmit)="submit(myregistr.value)">
+
+<div class="form-group">
+   <input type="text" formControlName="fname" placeholder="FirstName" class="fname">
+   <div *ngIf="myregistr.get('fname').invalid && (myregistr.get('fname').dirty ||
+   myregistr.get('fname').touched)" class="text-danger">
+    First Name is required(only alphabets)
+   </div>
+</div>
+
+<div class="form-group">
+    <input type="text" formControlName="lname" placeholder="LastName" class="lname">
+    <div *ngIf="myregistr.get('lname').invalid && (myregistr.get('lname').dirty || 
+    myregistr.get('lname').touched)" class="text-danger">
+     Last Name is required(only alphabets)
+    </div>
+</div>
+
+<div class="form-group">
+    <input type="text" formControlName="phone" placeholder="Contact Number">
+    <div *ngIf="myregistr.get('phone').invalid && (myregistr.get('phone').dirty || 
+    myregistr.get('phone').touched)" class="text-danger">
+    MAX LENGTH is 10(enter only numbers)
+    </div>
+</div>
+
+<div class="form-group">
+    <label name="label">GENDER:</label>
+    <input type="radio" formControlName="mgender" name="mgender" value="male">
+    <label name="radio-label">Male</label>
+    <input type="radio" formControlName="mgender" name="mgender" value="female">
+    <label name="radio-label">Female</label>
+</div>
+
+
+<div class="form-group">
+    <label name="select-country">Country:</label>
+    <select class="custom-select" formControlName="countryName" (change)="onChange($event)">
+        <option value="">Choose value</option>
+        <option value="country">Choose country</option>
+        <option *ngFor="let country of country" >
+        {{country.name}}
+        </option>
+    </select>
+</div>
+
+<div class="form-group" *ngIf="showState"> {{showState}}
+    <label name="select-state">State:</label>
+    <select class="custom-select" formControlName="stateName">
+        <option value="">Choose value</option>
+        <option value="state">Choose state</option>
+        <option *ngFor="let state of state" >
+        {{state.name}}
+    </option>
+    </select>
+</div>
+
+<div class="form-group">
+    <input type="text" formControlName="email" placeholder="E-Mail" class="email">
+    <div *ngIf="myregistr.get('email').invalid && (myregistr.get('email').dirty || 
+    myregistr.get('email').touched)" class="text-danger">
+    Follow email format(pranjali@gmail.com)
+    </div>
+</div>
+
+<div class="form-group">
+    <input type="text" formControlName="address" placeholder="Adress" class="address">
+    <div *ngIf="myregistr.get('address').invalid && (myregistr.get('address').dirty || 
+    myregistr.get('address').touched)" class="text-danger">
+    Address is required
+    </div>
+</div>
+
+<div class="form-group">
+    <input type="text" formControlName="pincode" placeholder="pincode" class="pincode">
+    <div *ngIf="myregistr.get('pincode').invalid && (myregistr.get('pincode').dirty || 
+    myregistr.get('pincode').touched)" class="text-danger">
+    Pincode is required
+    </div>
+</div>
+
+<div class="form-group">
+    <input type="submit" value="submit" name="submit">
+</div>
+
+<div class="container">
+    <table class="table table-trapped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact No.</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>E-mail</th>
+                <th>Address</th>
+                <th>Pincode</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of postData">
+            <td>{{x.fname}}</td>
+            <td>{{x.lname}}</td>
+            <td>{{x.phone}}</td>
+            <td>{{x.gender}}</td>
+            <td>{{x.country}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.address}}</td>
+            <td>{{x.pincode}}</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+</form>
+</div>
+</div>
